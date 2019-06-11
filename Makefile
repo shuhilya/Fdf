@@ -6,7 +6,7 @@
 #    By: amerlon- <amerlon-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/21 20:01:04 by amerlon-          #+#    #+#              #
-#    Updated: 2018/12/27 04:28:30 by amerlon-         ###   ########.fr        #
+#    Updated: 2019/06/11 15:37:23 by htorp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ LIBFT = libft.a
 all: $(NAME)
 
 $(OBJS):
-	@gcc -c $(SRCS) $(FLAGS) -I$(INCLUDES)
+	@gcc -c $(SRCS) $(FLAGS) -I$(INCLUDES) -I./minilibx_macos
 
 $(NAME): $(OBJS)
+	make -C minilibx_macos
 	@gcc $(OBJS) -o $(NAME) $(LIBFT) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	@rm -f $(OBJS)
+	make -C minilibx_macos clean
 
 fclean: clean
 	@rm -f $(NAME)
